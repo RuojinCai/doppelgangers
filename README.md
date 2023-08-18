@@ -11,13 +11,13 @@
 <br>
 ICCV 2023 Oral
 
-#### [Project Page](https://doppelgangers-3d.github.io/) | [Paper]() | [Dataset](https://github.com/RuojinCai/doppelgangers/data/doppelgangers_dataset/README.md)
+#### [Project Page](https://doppelgangers-3d.github.io/) | [Paper]() | [Dataset](https://github.com/RuojinCai/doppelgangers/blob/main/data/doppelgangers_dataset/README.md)
 
 Implementation for paper "Doppelgangers: Learning to Disambiguate Images of Similar Structures", which proposes a learning-based approach to disambiguate distinct but visually similar image pairs (doppelgangers) and apply in structure-from-motion disambiguation.
 
 ## Citation
 ```
-@article{cai2023doppelgangers,
+@inproceedings{cai2023doppelgangers,
   title     = {Doppelgangers: Learning to Disambiguate Images of Similar Structures},
   author    = {Cai, Ruojin and Tung, Joseph and Wang, Qianqian and Averbuch-Elor, Hadar and Hariharan, Bharath and Snavely, Noah},
   journal   = {ICCV},
