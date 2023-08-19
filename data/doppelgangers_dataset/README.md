@@ -13,63 +13,96 @@ This page includes downloads for:
 * COLMAP reconstructions
 * Pretrained model checkpoints
 
-### Train and Test Sets
-We provide separate downloads for images, image pair labels, and precomputed LoFTR matches.
+For the train and test sets, we provide downloads for images, image pair labels, and precomputed LoFTR matches.
 
 ## Dataset Structure
 
-### Images
-The image directory structure follows the WikiScenes dataset data structure as described in [Section 1, *Images and Textual Descriptions*](https://github.com/tgxs002/wikiscenes#the-wikiscenes-dataset).
-
-The image pair labels use the NumPy `.npy` file format.
-
-
-### Post-Extraction File Structure
-All compressed `tar.gz` files will extract into a joint `/doppelgangers/` directory. Generally, these types of content will map to the following subdirectories:
+### General File Structure
+All compressed `tar.gz` files will extract into a joint `/doppelgangers/` directory. Generally, different types of content will map to the following subdirectories:
 * Images &rarr; `/doppelgangers/images/(set_name)`
 * Image pair info &rarr; `/doppelgangers/pairs_metadata/(set_name)`
 * LoFTR matches &rarr; `/doppelgangers/loftr_matches/(set_name)`
 * Pretrained models &rarr; `/doppelgangers/checkpoints/`
 * COLMAP SfM reconstructions &rarr; `/doppelgangers/reconstructions/`
 
+### Image File Structure
+The image directory structure follows the WikiScenes dataset data structure as described in [Section 1, *Images and Textual Descriptions*](https://github.com/tgxs002/wikiscenes#the-wikiscenes-dataset).
+
+### Image Pair Labels Structure
+The image pair labels are stored using the NumPy `.npy` file format. There is one `.npy` file for every train or test set. Every `.npy` file contains a numpy array whose entries represent image pairs, and each entry is itself a numpy array.
+
+An image pair entry has the format:
+```
+array([
+    image_0_relative_path : str,
+    image_1_relative_path : str,
+    pos_neg_pair_label (pos=1, neg=0) : int,
+    number_of_SIFT_matches : int
+])
+```
+
+Example of an image pair entry:
+```
+array(['Berlin_Cathedral/east/0/pictures/Exterior of Berlin Cathedral 18.jpg',
+       'Berlin_Cathedral/west/0/0/pictures/Exterior of Berlin Cathedral 14.jpg',
+       0, 15], dtype=object)
+```
+
+### Precomputed LoFTR Matches Structure
+The LoFTR matches are stored using the NumPy `.npy` file format. There are multiple `.npy` files per train or test set—one per image pair. The name of the `.npy` file is the index of the pair's location in the image pair NumPy array. 
 
 
-## Dataset Downloads
+
+## Downloads for Train Set, without Image Flip Augmentation
 ### Images and Precomputed Matches
-#### Train Set, without Flip Augmentation
 * Images: [train_set_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_noflip.tar.gz)
 * LoFTR matches: [matches_train_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_noflip.tar.gz)
+* Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
-**Preparing the dataset:** No additional steps are required.
+### Preparing the Dataset
+No additional steps are required.
 
-#### Train Set, with Flip Augmentation
+## Downloads for Train Set, with Image Flip Augmentation
+### Images and Precomputed Matches
 * Images:
   * Base images: [train_set_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_flip.tar.gz)
-  * Flip augmentation script: [flip_augmentation.py](https://doppelgangers.cs.cornell.edu/dataset/flip_augmentation.py)
-  * Additional images, MegaDepth augmentation: [megadepth.json](https://doppelgangers.cs.cornell.edu/dataset/megadepth.json)
+  * MegaDepth subset, images: [train_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.tar.gz)
+  * MegaDepth subset, metadata: [megadepth.json](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.json)
+  * Image flip augmentation script: [flip_augmentation.py](https://doppelgangers.cs.cornell.edu/dataset/flip_augmentation.py)
 * LoFTR matches:
   * Base matches: [matches_train_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_flip.tar.gz)
-  * Additional matches, MegaDepth augmentation: [matches_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_megadepth.tar.gz)
+  * MegaDepth subset matches: [matches_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_megadepth.tar.gz)
+* Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
-**Preparing the dataset:** We provide a Python script `flip_augmentation.py` to perform the image flip augmentation on the provided base images. 
+### Preparing the Dataset
+We provide a Python script `flip_augmentation.py` to perform the image flip augmentation on the provided base images. To use this script, please modify the configuration options at the beginning of the script and run with `python flip_augmentation.py`.
 
-To use this script, please modify the configuration options at the beginning of the script and run with `python flip_augmentation.py`.
+#### MegaDepth
+This train set includes a subset of [MegaDepth](https://www.cs.cornell.edu/projects/megadepth/) images. Note that the MegaDepth images also have flip augmentations. Metadata on the subset of MegaDepth images that are used are stored in `megadepth.json`. The subset of images can also be directly downloaded, and are stored in 'train_megadepth.tar.gz`.
 
-#### Test Set
+Note that the file structure of our MegaDepth images are adjusted from the downloaded version. Let `xxxx` be the MegaDepth scene ID. The mapping from the download version to our file paths is as follows:
+* The `xxxx/dense/images` in the downloaded version maps to our `xxxx/images/` directory.
+* The `xxx/dense(int)/images` in the downloaded version maps to our `xxxx/images/dense(int)/images/` directory.
+* The scene ID's `0147_1` and `0290_1` contain the `dense1` images of `0147` and `0290`, respectively. They are separated into a separate scene because the `dense1` images depict different landmarks from those depicted the original `dense` directories.
+
+## Downloads for Test Set
+### Images and Precomputed Matches
 * Images: [test_set.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/test_set.tar.gz)
 * LoFTR matches: [matches_test.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz)
+* Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
-**Preparing the dataset:** No additional steps are required.
+### Preparing the Dataset
+No additional steps are required.
 
-### Image Pairs
-* Image pairs information for all training and test sets: [pairs_metadata.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz)
-
-
-## Pretrained Models
-The pretrained model with image flip augmentation: [checkpoint.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/checkpoint.tar.gz)
+## Downloads for Image Pairs
+Image pair metadata for all training and test sets: [pairs_metadata.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz)
 
 
-## Reconstructions
+## Downloads for Pretrained Models
+Pretrained model checkpoint with image flip augmentation: [checkpoint.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/checkpoint.tar.gz)
+
+
+## Downloads for Reconstructions
 [COLMAP](https://colmap.github.io/) reconstructions of the sixteen test scenes described in the paper: [reconstructions.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/reconstructions.tar.gz)
 
 ## Dataset Attributions
@@ -84,6 +117,6 @@ If you find Doppelgangers useful for your work please cite:
   title     = {Doppelgangers: Learning to Disambiguate Images of Similar Structures},
   author    = {Cai, Ruojin and Tung, Joseph and Wang, Qianqian and Averbuch-Elor, Hadar and Hariharan, Bharath and Snavely, Noah},
   journal   = {ICCV},
-  year      = {2023},
+  year      = {2023}
 }
 ```
