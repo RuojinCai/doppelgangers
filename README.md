@@ -21,6 +21,6 @@ Implementation for paper "Doppelgangers: Learning to Disambiguate Images of Simi
   title     = {Doppelgangers: Learning to Disambiguate Images of Similar Structures},
   author    = {Cai, Ruojin and Tung, Joseph and Wang, Qianqian and Averbuch-Elor, Hadar and Hariharan, Bharath and Snavely, Noah},
   journal   = {ICCV},
-  year      = {2023},
+  year      = {2023}
 }
 ```

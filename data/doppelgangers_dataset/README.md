@@ -67,7 +67,7 @@ No additional steps are required.
 * Images:
   * Base images: [train_set_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_flip.tar.gz)
   * MegaDepth subset, images: [train_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.tar.gz)
-  * MegaDepth subset, metadata: [megadepth.json](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.json)
+  * MegaDepth subset, metadata: [megadepth.json](https://doppelgangers.cs.cornell.edu/dataset/megadepth.json)
   * Image flip augmentation script: [flip_augmentation.py](https://doppelgangers.cs.cornell.edu/dataset/flip_augmentation.py)
 * LoFTR matches:
   * Base matches: [matches_train_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_flip.tar.gz)
@@ -78,7 +78,7 @@ No additional steps are required.
 We provide a Python script `flip_augmentation.py` to perform the image flip augmentation on the provided base images. To use this script, please modify the configuration options at the beginning of the script and run with `python flip_augmentation.py`.
 
 #### MegaDepth
-This train set includes a subset of [MegaDepth](https://www.cs.cornell.edu/projects/megadepth/) images. Note that the MegaDepth images also have flip augmentations. Metadata on the subset of MegaDepth images that are used are stored in `megadepth.json`. The subset of images can also be directly downloaded, and are stored in 'train_megadepth.tar.gz`.
+This train set includes a subset of [MegaDepth](https://www.cs.cornell.edu/projects/megadepth/) images. Note that the MegaDepth images also have flip augmentations. Metadata on the subset of MegaDepth images that are used are stored in `megadepth.json`. The subset of images can also be directly downloaded, and are stored in `train_megadepth.tar.gz`.
 
 Note that the file structure of our MegaDepth images are adjusted from the downloaded version. Let `xxxx` be the MegaDepth scene ID. The mapping from the download version to our file paths is as follows:
 * The `xxxx/dense/images` in the downloaded version maps to our `xxxx/images/` directory.
