@@ -4,6 +4,38 @@ This is the Doppelgangers dataset, a benchmark dataset that allows for training 
 
 Doppelgangers consists of a collection of internet photos of world landmarks and cultural sites that exhibit repeated patterns and symmetric structures. The dataset includes a large number of image pairs, each labeled as either positive or negative based on whether they are true or false (illusory) matching pairs.
 
+## One-step to download the complete dataset
+We provide a `download.sh` script for downloading, extracting, and pre-processing the complete Doppelgangers Dataset. Dataset can be placed under the folder `./data/doppelgangers_dataset/` with the following layout:
+<details>
+<summary>[Click to expand]</summary>
+
+```
+|---doppelgangers
+    |---images
+        |---test_set
+            |---...
+        |---train_set_flip
+            |---...
+        |---train_set_noflip
+            |---...
+        |---train_megadepth
+            |---...
+    |---loftr_matches
+        |---test_set
+            |---...
+        |---train_set_flip
+            |---...
+        |---train_set_noflip
+            |---...
+        |---train_megadepth
+            |---...
+    |---pairs_metadata
+        |---...
+```
+</details>
+
+If you want to download only a portion of the dataset, you can find detailed instructions below.
+
 ## Overview
 
 This page includes downloads for:
@@ -55,23 +87,23 @@ The LoFTR matches are stored using the NumPy `.npy` file format. There are multi
 
 ## Downloads for Train Set, without Image Flip Augmentation
 ### Images and Precomputed Matches
-* Images: [train_set_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_noflip.tar.gz)
-* LoFTR matches: [matches_train_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_noflip.tar.gz)
+* Images: [train_set_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_noflip.tar.gz) (11G)
+* LoFTR matches: [matches_train_noflip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_noflip.tar.gz) (1.2G)
 * Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
 ### Preparing the Dataset
-No additional steps are required.
+Follow the [Preparing the Dataset](#preparing-the-dataset-1) section.
 
 ## Downloads for Train Set, with Image Flip Augmentation
 ### Images and Precomputed Matches
 * Images:
-  * Base images: [train_set_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_flip.tar.gz)
-  * MegaDepth subset, images: [train_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.tar.gz)
+  * Base images: [train_set_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_set_flip.tar.gz) (29G)
+  * MegaDepth subset, images: [train_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/train_megadepth.tar.gz) (41G)
   * MegaDepth subset, metadata: [megadepth.json](https://doppelgangers.cs.cornell.edu/dataset/megadepth.json)
   * Image flip augmentation script: [flip_augmentation.py](https://doppelgangers.cs.cornell.edu/dataset/flip_augmentation.py)
 * LoFTR matches:
-  * Base matches: [matches_train_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_flip.tar.gz)
-  * MegaDepth subset matches: [matches_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_megadepth.tar.gz)
+  * Base matches: [matches_train_flip.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_train_flip.tar.gz) (1.8G)
+  * MegaDepth subset matches: [matches_megadepth.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_megadepth.tar.gz) (1.1G)
 * Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
 ### Preparing the Dataset
@@ -87,23 +119,23 @@ Note that the file structure of our MegaDepth images are adjusted from the downl
 
 ## Downloads for Test Set
 ### Images and Precomputed Matches
-* Images: [test_set.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/test_set.tar.gz)
-* LoFTR matches: [matches_test.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz)
+* Images: [test_set.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/test_set.tar.gz) (2G)
+* LoFTR matches: [matches_test.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz) (76M)
 * Image pair info: [(jump to section)](#downloads-for-image-pairs)
 
 ### Preparing the Dataset
 No additional steps are required.
 
 ## Downloads for Image Pairs
-Image pair metadata for all training and test sets: [pairs_metadata.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/matches_test.tar.gz)
+Image pair metadata for all training and test sets: [pairs_metadata.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/pairs_metadata.tar.gz) (12M)
 
 
 ## Downloads for Pretrained Models
-Pretrained model checkpoint with image flip augmentation: [checkpoint.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/checkpoint.tar.gz)
+Pretrained model checkpoint with image flip augmentation: [checkpoint.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/checkpoint.tar.gz) (119M)
 
 
 ## Downloads for Reconstructions
-[COLMAP](https://colmap.github.io/) reconstructions of the sixteen test scenes described in the paper: [reconstructions.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/reconstructions.tar.gz)
+[COLMAP](https://colmap.github.io/) reconstructions of the sixteen test scenes described in the paper: [reconstructions.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/reconstructions.tar.gz) (3G)
 
 ## Dataset Attributions
 Licensing information for images in the train and test sets sourced from Wikimedia Commons are here: [attributions.json](https://doppelgangers.cs.cornell.edu/dataset/attributions.json)
