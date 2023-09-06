@@ -11,7 +11,7 @@
 <br>
 ICCV 2023 Oral
 
-#### [Project Page](https://doppelgangers-3d.github.io/) | [Paper]() | [Dataset](https://github.com/RuojinCai/doppelgangers/blob/main/data/doppelgangers_dataset/README.md)
+#### [Project Page](https://doppelgangers-3d.github.io/) | [Paper](https://arxiv.org/pdf/2309.02420.pdf) | [Arxiv](https://arxiv.org/abs/2309.02420) | [Dataset](https://github.com/RuojinCai/doppelgangers/blob/main/data/doppelgangers_dataset/README.md)
 
 <p float="left">
     <img src="assets/teaser_video.gif" height="320"/>
