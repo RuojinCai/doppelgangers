@@ -96,7 +96,7 @@ and set the path for output results using the argument `--output_path [path/to/o
   ```
   </details>
 
-- Use the argument `--skip_resonctruion` to skip the standard COLMAP reconstruction w/o Doppelgangers classifier.
+- Use the argument `--skip_reconstruction` to skip the standard COLMAP reconstruction w/o Doppelgangers classifier.
 - Change doppelgangers threshold with argument `--threshold` and specify a value between 0 and 1. A smaller threshold includes more pairs, while a larger threshold filters out more pairs. The default threshold is set to 0.8. When the reconstruction is split into several components, consider using a smaller threshold. If the reconstruction is not completely disambiguated, consider using a larger threshold.
 - Pretrained model can be specified by the argument `--pretrained [path/to/checkpoint]`. 
 </details>
