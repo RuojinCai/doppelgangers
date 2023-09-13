@@ -28,7 +28,7 @@ def get_args():
                         help="skip colmap feature matching stage")
     parser.add_argument('--database_path', default=None, type=str,
                         help="path to database.db")
-    parser.add_argument('--skip_resonctruion', default=False, action='store_true',
+    parser.add_argument('--skip_reconstruction', default=False, action='store_true',
                         help="skip colmap reconstruction w/o doppelgangers classifier")
     
     # input dataset setting
@@ -207,7 +207,7 @@ def main_worker(gpu, ngpus_per_node, cfg, args):
     os.system(' '.join(command)) 
 
     # colmap reconstruction 
-    if not args.skip_resonctruion:
+    if not args.skip_reconstruction:
         print("colmap reconstruction w/o doppelgangers classifier")  
         colmap_result_path = os.path.join(args.output_path, 'sparse')
         os.makedirs(colmap_result_path, exist_ok=True)
