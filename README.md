@@ -143,6 +143,8 @@ python train_multi_gpu.py doppelgangers/configs/training_configs/doppelgangers_c
 **I have created [this fork of HLOC](), it hopefully will later be merged**
 
 ```python
+from doppelgangers.utils import inference_on_hloc as doppelganger_removal,
+                                overwrite_hloc as doppelganger_overwrite
 sfm_pairs = outputs / "pairs-sfm.txt"
 sfm_pairs_filtered = outputs / "pairs-sfm-filtered.txt"
 features = outputs / "features.h5"
