@@ -140,7 +140,7 @@ python train_multi_gpu.py doppelgangers/configs/training_configs/doppelgangers_c
 
 **You will need to have some additional data in your matches.h5**
 
-**I have created [this fork of HLOC](git@github.com:awarebayes/Hierarchical-Localization.git), it hopefully will later be merged**
+**I have created [this fork of HLOC](https://github.com/awarebayes/doppelgangers-hloc.git), it hopefully will later be merged**
 
 ```python
 from doppelgangers.utils import inference_on_hloc as doppelganger_removal,
