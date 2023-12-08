@@ -1,7 +1,7 @@
 # Doppelgangers: Learning to Disambiguate Images of Similar Structures
 
 [Ruojin Cai](https://www.cs.cornell.edu/~ruojin/)<sup>1</sup>, 
-[Joseph Tung]()<sup>1</sup>, 
+[Joseph Tung](https://www.linkedin.com/in/josephtung-/)<sup>1</sup>, 
 [Qianqian Wang](https://www.cs.cornell.edu/~qqw/)<sup>1</sup>, 
 [Hadar Averbuch-Elor](https://www.elor.sites.tau.ac.il/)<sup>2</sup>, 
 [Bharath Hariharan](https://www.cs.cornell.edu/~bharathh/)<sup>1</sup>,
@@ -102,7 +102,9 @@ and set the path for output results using the argument `--output_path [path/to/o
 </details>
 
 #### Reconstruction Results
-[COLMAP](https://colmap.github.io/) reconstructions w/ and w/o Doppelgangers classifier of the test scenes described in the paper: [reconstructions.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/reconstructions.tar.gz) (3G)
+[COLMAP](https://colmap.github.io/) reconstructions of test scenes with and without the Doppelgangers classifier, as described in the paper: [reconstructions.tar.gz](https://doppelgangers.cs.cornell.edu/dataset/reconstructions.tar.gz) (3G)
+
+These reconstructions can be imported and visualized in the COLMAP [GUI](https://colmap.github.io/gui.html).
 
 ## Pairwise Visual Disambiguation
 
