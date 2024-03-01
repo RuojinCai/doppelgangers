@@ -67,7 +67,8 @@ def save_loftr_matches(data_path, pair_path, output_path, model_weight_path="wei
     padding = True
 
     for idx in tqdm.tqdm(range(pairs_info.shape[0])):
-        if osp.exists(output_path+'loftr_match/%d.npy'%idx):
+        output_dir = osp.join(output_path, f'loftr_match/{idx}.npy')
+        if osp.exists(output_dir):
             continue
         name0, name1, _, _, _ = pairs_info[idx]
 
@@ -88,6 +89,6 @@ def save_loftr_matches(data_path, pair_path, output_path, model_weight_path="wei
             mkpts1 = batch['mkpts1_f'].cpu().numpy()
             mconf = batch['mconf'].cpu().numpy()
 
-            np.save(output_path+'loftr_match/%d.npy'%idx, {"kpt0": mkpts0, "kpt1": mkpts1, "conf": mconf})
+            np.save(output_dir, {"kpt0": mkpts0, "kpt1": mkpts1, "conf": mconf})
 
 
