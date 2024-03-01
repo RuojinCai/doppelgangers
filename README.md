@@ -138,6 +138,87 @@ python train.py doppelgangers/configs/training_configs/doppelgangers_classifier_
 python train_multi_gpu.py doppelgangers/configs/training_configs/doppelgangers_classifier_flip.yaml
 ```
 
+## Usage with [HLOC](https://github.com/cvg/Hierarchical-Localization)
+
+**You will need to have some additional data in your matches.h5**
+
+**I have created [this fork of HLOC](https://github.com/awarebayes/Hierarchical-Localization/tree/doppelgangers-integration-1), it hopefully will later be merged**
+
+```python
+from doppelgangers.utils import inference_on_hloc as doppelganger_removal,
+                                overwrite_hloc as doppelganger_overwrite
+sfm_pairs = outputs / "pairs-sfm.txt"
+sfm_pairs_filtered = outputs / "pairs-sfm-filtered.txt"
+features = outputs / "features.h5"
+vlad_features = outputs / "vlad.h5"
+matches = outputs / "matches.h5"
+
+ref_dir = outputs / "ref"
+dense_conf_json = outputs / "dense_conf.json"
+
+feature_conf = extract_features.confs["superpoint_aachen"]
+matcher_conf = match_features.confs["superpoint+lightglue"]
+
+# Global Features
+extract_features.main(
+    extract_features.confs["netvlad"],
+    images,
+    outputs,
+    image_list=references,
+    feature_path=vlad_features,
+)
+
+# Local sparse features
+extract_features.main(
+    feature_conf, images,
+    image_list=references,
+    feature_path=features
+)
+
+pairs_from_retrieval.main(
+    descriptors=vlad_features,
+    output=sfm_pairs,
+    num_matched=16,
+    query_list=references,
+)
+
+# Matching features 
+match_features.main(
+  matcher_conf, 
+  sfm_pairs,
+  features=features,
+  matches=matches
+)
+
+# Doppelganger usage
+doppelganger_removal.main(
+    weights_path='...',
+    features_file=features,
+    matches_file=matches,
+    sfm_filtered=sfm_pairs_filtered,
+    image_dir=images,
+    pair_path=sfm_pairs,
+    batch_size=16
+)
+
+doppelganger_overwrite.main(
+    sfm_filtered=sfm_pairs_filtered,
+    pair_path=sfm_pairs,
+    matches_file=matches
+)
+
+# SFM
+sfm = PixSfM(conf="low_memory")
+sfm.reconstruction(
+    ref_dir,
+    images,
+    sfm_pairs,
+    features,
+    matches,
+    image_list=references,
+)
+```
+
 ## Citation
 ```
 @inproceedings{cai2023doppelgangers,
